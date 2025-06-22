@@ -46,9 +46,9 @@ A API estará rodando em: http://localhost:3000
 👉 Acesse a API hospedada aqui:
 https://api-produtos.onrender.com
 
-##🌐 API online (Render)
-👉 Acesse a API hospedada aqui:
-[https://api-produtos.onrender.com](https://devweb-1gx1.onrender.com/produto)
+📄 Documentação Swagger
+👉 Documentação interativa da API:
+https://api-produtos.onrender.com/api-docs
 
 ✍️ Autor
 Samuel – Projeto final da disciplina de Desenvolvimento Web 1.
