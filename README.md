@@ -48,7 +48,7 @@ https://api-produtos.onrender.com
 
 📄 Documentação Swagger
 👉 Documentação interativa da API:
-https://api-produtos.onrender.com/api-docs
+https://github.com/SamuelLago/DevWeb/blob/master/swagger.yaml
 
 ✍️ Autor
 Samuel – Projeto final da disciplina de Desenvolvimento Web 1.
