@@ -47,7 +47,7 @@ A API estará rodando em: http://localhost:3000
 https://api-produtos.onrender.com
 
 📄 Documentação Swagger
-👉 Documentação interativa da API:
+👉 Documentação:
 https://github.com/SamuelLago/DevWeb/blob/master/swagger.yaml
 
 ✍️ Autor
