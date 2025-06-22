@@ -12,8 +12,12 @@ mongoose.connect(
   `mongodb+srv://Samuel:burro123@cluster0.y55j5ci.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 )
 
+const port = process.env.PORT || 4000;
+
 .then(() => {
   console.log("Conectado ao MongoDB Atlas");
-  app.listen(3000);
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+  });
 })
 .catch((err) => console.log(err));
