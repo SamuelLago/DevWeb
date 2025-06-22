@@ -1,0 +1,277 @@
+openapi: 3.0.0
+info:
+  title: API de Produtos
+  description: API para CRUD de produtos
+  version: 1.0.0
+servers:
+  - url: https://devweb-1gx1.onrender.com
+    description: Deploy no Render
+paths:
+  /:
+    post:
+      tags:
+        - Produtos
+      summary: Criar novo produto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoInput'
+      responses:
+        '201':
+          description: Produto cadastrado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+                    example: Produto cadastrado com sucesso!
+        '422':
+          description: Erro de validação - campos faltando
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+                    example: Preencha todos os campos obrigatórios!
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+
+    get:
+      tags:
+        - Produtos
+      summary: Listar todos os produtos
+      responses:
+        '200':
+          description: Lista de produtos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+
+  /{filtro}:
+    get:
+      tags:
+        - Produtos
+      summary: Buscar produto por ID ou nome
+      parameters:
+        - in: path
+          name: filtro
+          schema:
+            type: string
+          required: true
+          description: ObjectId do Mongo ou nome do produto
+      responses:
+        '200':
+          description: Produto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        '404':
+          description: Produto não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+                    example: Produto não encontrado
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+
+  /{id}:
+    put:
+      tags:
+        - Produtos
+      summary: Atualizar produto
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ObjectId do produto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoInput'
+      responses:
+        '200':
+          description: Produto atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+                    example: Produto atualizado com sucesso!
+        '404':
+          description: Produto não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+                    example: Produto não encontrado
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+
+    delete:
+      tags:
+        - Produtos
+      summary: Excluir produto
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ObjectId do produto
+      responses:
+        '200':
+          description: Produto deletado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+                    example: Produto deletado com sucesso!
+        '404':
+          description: Produto não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+                    example: Produto não encontrado
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+
+components:
+  schemas:
+    Produto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID gerado pelo MongoDB
+          example: 605c72ae5b3f8b0015d2c123
+        nome:
+          type: string
+          example: Celular Android
+        descricao:
+          type: string
+          example: Modelo intermediário com 128GB
+        cor:
+          type: string
+          example: Preto
+        peso:
+          type: number
+          format: float
+          example: 0.4
+        tipo:
+          type: string
+          example: Eletrônico
+        preco:
+          type: number
+          format: float
+          example: 1299.90
+        dataCadastro:
+          type: string
+          format: date-time
+          example: 2025-06-22T21:20:09.804Z
+      required:
+        - _id
+        - nome
+        - descricao
+        - cor
+        - peso
+        - tipo
+        - preco
+        - dataCadastro
+
+    ProdutoInput:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Celular Android
+        descricao:
+          type: string
+          example: Modelo intermediário com 128GB
+        cor:
+          type: string
+          example: Preto
+        peso:
+          type: number
+          format: float
+          example: 0.4
+        tipo:
+          type: string
+          example: Eletrônico
+        preco:
+          type: number
+          format: float
+          example: 1299.90
+      required:
+        - nome
+        - descricao
+        - cor
+        - peso
+        - tipo
+        - preco
