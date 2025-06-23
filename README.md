@@ -42,11 +42,11 @@ npm start
 ```
 A API estará rodando em: http://localhost:3000
 
-##🌐 API online (Render)
+🌐 ##API online (Render)
 👉 Acesse a API hospedada aqui:
 https://api-produtos.onrender.com
 
-📄 Documentação Swagger
+📄 ##Documentação Swagger
 👉 Documentação:
 https://github.com/SamuelLago/DevWeb/blob/master/swagger.yaml
 
@@ -58,5 +58,3 @@ Copiar
 Editar
 
 ---
-
-### ✅ Agora só:
